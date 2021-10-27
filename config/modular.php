@@ -13,10 +13,7 @@ return [
 
     'modules' => [
         'Admin' => [
-            'Role',
-            'Menu',
             'Dashboard',
-            'User',
         ],
 
         'Pub' => [
