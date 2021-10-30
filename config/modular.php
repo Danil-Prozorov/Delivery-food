@@ -18,7 +18,8 @@ return [
         ],
 
         'Pub' => [
-            'Auth'
+            'Cart',
+            'Restaurants',
         ],
     ]
 ];
