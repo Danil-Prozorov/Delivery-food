@@ -11,6 +11,7 @@
   <header>
      @yield('header')
   </header>
+  @yield('slider')
   <main>
      @yield('content')
   </main>
