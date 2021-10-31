@@ -16,6 +16,7 @@ class CreateRestaurantsTable extends Migration
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
             $table->text('restaurant_name');
+            $table->text('image_path');
             $table->integer('count_products')->default(0);
             $table->timestamps();
         });
