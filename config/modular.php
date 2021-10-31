@@ -13,11 +13,13 @@ return [
 
     'modules' => [
         'Admin' => [
+            'User',
             'Dashboard',
         ],
 
         'Pub' => [
-            'Auth'
+            'Cart',
+            'Restaurants',
         ],
     ]
 ];
