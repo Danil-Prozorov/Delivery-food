@@ -18,6 +18,7 @@ return [
         ],
 
         'Pub' => [
+            'Feedback',
             'Cart',
             'Restaurants',
         ],
