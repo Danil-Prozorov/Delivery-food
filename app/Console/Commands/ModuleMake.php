@@ -19,7 +19,6 @@ class ModuleMake extends Command
     protected $signature = 'make:module {name}
                                                    {--all}
                                                    {--migration}
-                                                   {--vue}
                                                    {--view}
                                                    {--controller}
                                                    {--model}
