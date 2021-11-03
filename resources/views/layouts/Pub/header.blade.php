@@ -26,6 +26,7 @@
                 @endauth
                 @else
                   <a href="{{ route('login') }}"><button class='btn btn-primary'>Войти</button></a>
+                  <a href="{{ route('cart.index') }}"><button>Корзина</button></a>
               @endif
             </div>
         </div>
