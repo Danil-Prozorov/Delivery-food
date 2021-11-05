@@ -21,8 +21,7 @@
   <footer>
      @yield('footer')
   </footer>
-  <script src="{{asset('js/slider.js') }}">
-
-  </script>
+  <script src="{{asset('js/slider.js') }}"></script>
+  <script src="{{asset('js/sendJsonRequest.js') }}"></script>
 </body>
 </html>

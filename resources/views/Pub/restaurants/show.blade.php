@@ -30,7 +30,7 @@
                     <p>{{$prod->ingredients}}</p>
                   </div>
                   <div>
-                    <button id="product_{{$prod->id}}" class="button blue-button">В корзину</button>
+                    <button class="button blue-button" onclick="AddToCart({{$prod->id}},{{$prod->price}})">В корзину</button>
                     <p>{{$prod->price}}&#8381;</p>
                   </div>
                 </div>
