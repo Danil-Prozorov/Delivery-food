@@ -2,10 +2,10 @@
     <nav class='navigation container'>
         <div class="navigation__wrap row col-12">
             <div class="navigation__logo">
-              <a href='/'><img src="/images/logo.svg" alt="logo"></a>
+              <a href='/restaurants'><img src="/images/logo.svg" alt="logo"></a>
             </div>
-            <div class="navigation__adres-row">
-               <input type="text" id="search" name="search" placeholder="Адрес">
+            <div class="navigation__adres-row-wrap">
+               <input type="text" id="search" name="search" placeholder="Адрес доставки">
             </div>
             <div class="navigation__buttons-wrap">
               @if(auth()->user())
@@ -25,8 +25,8 @@
                   <a href="{{ route('cart.index') }}"><button>Корзина</button></a>
                 @endauth
                 @else
-                  <a href="{{ route('login') }}"><button class='btn btn-primary'>Войти</button></a>
-                  <a href="{{ route('cart.index') }}"><button>Корзина</button></a>
+                  <a href="{{ route('login') }}"><button class='button login-btn blue-button'>Войти</button></a>
+                  <a href="{{ route('cart.index') }}"><button class='button cart-btn white-button'>Корзина</button></a>
               @endif
             </div>
         </div>

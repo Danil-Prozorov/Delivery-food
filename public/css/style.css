@@ -1,4 +1,248 @@
+/* General styles */
 *{
   margin:0px;
   padding: 0px;
 }
+body{
+    font-family: 'Roboto', sans-serif;
+    background: linear-gradient(180deg, rgba(245, 245, 245, 0) 1.04%, #F5F5F5 100%);
+}
+.container{
+  width:63%;
+  margin:0px auto;
+}
+
+.row{
+  display: flex;
+  align-items: center;
+}
+
+/* Styles for header */
+
+.navigation__wrap{
+  justify-content: space-between;
+  padding-top:44px;
+}
+
+.navigation__adres-row-wrap input{
+  width:650px;
+  padding-left: 35px;
+  background-image: url(../images/home.svg);
+  background-repeat: no-repeat;
+  background-position:left 11px center;
+  height:40px;
+  border-radius:2px;
+  border:1px solid lightgrey;
+  font-size: 20px;
+  line-height: 33px;
+}
+
+.button{
+  padding: 8px 16px;
+  border-radius:3px;
+  background-color:#fff;
+  border:1px solid lightgrey;
+  font-size:16px;
+  line-height:24px;
+  cursor:pointer;
+}
+
+.blue-button{
+  background-color: #1890FF;
+  border-color: #1890FF;
+  color:#fff;
+}
+
+.white-button{
+  border-color: lightgrey;
+}
+
+.login-btn{
+  background-image: url(../images/user.svg);
+  background-repeat: no-repeat;
+  background-position: left 15px center;
+  padding-left: 35px;
+}
+
+.cart-btn{
+  background-image: url(../images/shopping-cart.svg);
+  background-repeat: no-repeat;
+  background-position: left 13px center;
+  padding-left: 35px;
+  margin:4px;
+}
+
+/* End styles for header */
+
+/* Styles for slider */
+.slider__slides{
+  display: none;
+}
+
+.promo ,.promo2 ,.promo3{
+    display:flex;
+    justify-content: space-between;
+    margin-top:40px;
+    box-shadow: 0px 7px 12px rgba(158, 158, 163, 0.1);
+    border-radius:10px;
+    background:#fff1b8 url(/images/28099-1-5d432aae1ecce.jpeg) no-repeat top right -100px / 800px;
+    max-height: 300px;
+    margin-bottom:40px;
+}
+
+.promo2{
+    background:#A2F326 url(/images/kebab_PNG33.png) no-repeat  left bottom -25px / 570px;
+}
+
+.promo3{
+    background:#26F970 url(/images/sushi_PNG9229.png) no-repeat  right bottom 30px / 400px;
+}
+
+.slider__text-wrap{
+    font-size: 20px;
+    line-height: 30px;
+    padding:70px 0px 60px 80px;
+    max-width: 530px;
+}
+
+.slider__text-wrap h2{
+    margin-bottom:29px;
+}
+
+.promo2 .slider__text-wrap{
+    text-align:right;
+    padding:70px 0px 60px 20px;
+    margin:0px 0px 0px 600px;
+}
+
+/* End slider styles */
+
+/* Other styles */
+main{
+  min-height: 800px;
+}
+
+.content__search-bar{
+  font-size: 23px;
+  line-height: 42px;
+}
+
+.content__search-bar h2{
+  display: block;
+  font-size: 1.5em;
+  margin-block-start: 0.83em;
+  margin-block-end: 0.83em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+}
+
+
+/* Cotent for restaurants and products */
+.content__restaurants{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-column-gap:5%;
+  grid-auto-flow: row dense;
+}
+
+.content__restaurants{
+  max-width: 384px;
+  border-radius: 8px 8px 0px 0px;
+}
+
+.content__restauran{
+  margin-bottom: 30px;
+  background-color: #fff;
+  box-shadow: 1px 7px 12px rgba(158, 158, 163, 0.2);
+}
+
+.content__restaurants a{
+  text-decoration: none;
+  color:#000;
+}
+
+.content__previev-photo{
+  margin-bottom: 13px;
+}
+
+.content__previev-photo img{
+  max-width: 384px;
+  border-radius: 8px 8px 0px 0px;
+}
+
+.content__restauran-details{
+  width:85%;
+  margin:0px auto;
+}
+
+.content__restauran-details .content__restaurant-header{
+  display: flex;
+  justify-content: space-between;
+}
+
+.content__delivery-time{
+  color:#fff;
+  background-color: #000;
+  border-radius: 2px;
+  padding: 3px 5px 1px 5px;
+}
+
+.content__delivery-time *{
+  padding-bottom: 0;
+}
+
+.content__stats{
+  display: flex;
+  padding-bottom: 20px;
+  padding-top:20px;
+}
+
+.content__stats span{
+  color:#FFC107;
+  margin-right: 30px;
+}
+
+.content__stats p{
+  color:#8C8C8C;
+}
+/* Content end */
+
+
+
+/* End other styles */
+
+/* Footer styles */
+
+footer{
+  background-color: #fff;
+}
+
+.footer{
+  justify-content: space-between;
+  padding-top:46px;
+  padding-bottom:46px;
+}
+
+.footer__logo-wrap{
+  margin-right: 40px;
+}
+
+.footer__links-wrap{
+  display: flex;
+  align-items: center;
+}
+
+.footer__links-wrap a{
+  color:#595959;
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+.social-links a, .social-links a img{
+  height:28px;
+  width:40px;
+  margin-left: 10px;
+}
+
+/* End footer styles */
