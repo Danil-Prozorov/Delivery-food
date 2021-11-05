@@ -13,9 +13,9 @@ class RestaurantsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Restaurant $restaurant)
     {
-        //
+        return view('Pub.restaurants.index',compact('restaurant'));
     }
 
     /**
@@ -47,7 +47,7 @@ class RestaurantsController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        //
+        return view('Pub.restaurants.show',compact('restaurant'));
     }
 
     /**

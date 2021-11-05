@@ -5,18 +5,24 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <link rel="stylesheet" href="/css/style.css">
+        <link href="images/logo.svg" rel="shortcut icon">
         <title>Delivery Food-доставка еды</title>
     </head>
 <body>
   <header>
      @yield('header')
   </header>
-  @yield('slider')
   <main>
+    <section class='container'>
+      @yield('slider')
+    </section>
      @yield('content')
   </main>
   <footer>
      @yield('footer')
   </footer>
+  <script src="{{asset('js/slider.js') }}">
+
+  </script>
 </body>
 </html>
