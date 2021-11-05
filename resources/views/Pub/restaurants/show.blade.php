@@ -7,7 +7,7 @@
     <aside class='content__search-bar'>
       <h2>{{$restaurant->restaurant_name}}</h2>
       @if(count($restaurant->restaurants_products) != 0)
-        <div class='content__stats'>
+        <div class='content__stats '>
           <span><img src="/images/litle_star.svg"> {{$restaurant->stars}}</span>
           <p>От {{ $restaurant->restaurants_products->min('price') }}&#8381; &bull; {{$restaurant->restaurant_name}}</p>
         </div>
