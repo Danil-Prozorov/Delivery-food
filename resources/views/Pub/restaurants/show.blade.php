@@ -6,6 +6,12 @@
   <section class='content container'>
     <aside class='content__search-bar'>
       <h2>{{$restaurant->restaurant_name}}</h2>
+      @if(count($restaurant->restaurants_products) != 0)
+        <div class='content__stats'>
+          <span><img src="/images/litle_star.svg"> {{$restaurant->stars}}</span>
+          <p>От {{ $restaurant->restaurants_products->min('price') }}&#8381; &bull; {{$restaurant->restaurant_name}}</p>
+        </div>
+      @endif
     </aside>
       @if(count($restaurant->restaurants_products) == 0)
         <h1>Пока что тут ничего нет</h1>
@@ -25,6 +31,7 @@
                   </div>
                   <div>
                     <button id="product_{{$prod->id}}" class="button blue-button">В корзину</button>
+                    <p>{{$prod->price}}&#8381;</p>
                   </div>
                 </div>
             </div>
