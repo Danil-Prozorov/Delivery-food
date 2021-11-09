@@ -24,7 +24,9 @@
               </div>
               <div class="content__stats">
                  <span><img src="/images/litle_star.svg"> {{$rest->stars}}</span>
-                 <p>От {{ $rest->restaurants_products->min('price') }} &bull; {{$rest->restaurant_name}}</p>
+                 @if(count($rest->restaurants_products) != 0)
+                  <p>От {{ $rest->restaurants_products->min('price') }}&#8381; &bull; {{$rest->restaurant_name}}</p>
+                 @endif
               </div>
             </div>
           </a>
