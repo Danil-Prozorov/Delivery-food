@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Modules\Pub\Cart\Controllers\Api;
+namespace App\Modules\Pub\Feedback\Controllers;
 
-use App\Modules\Pub\Cart\Models\Cart;
+use App\Modules\Pub\Feedback\Models\Feedback;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class CartController extends Controller
+class FeedbackController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -42,10 +42,10 @@ class CartController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Modules\Pub\Cart\Models\Cart  $cart
+     * @param  \App\Modules\Pub\Feedback\Models\Feedback  $feedback
      * @return \Illuminate\Http\Response
      */
-    public function show(Cart $cart)
+    public function show(Feedback $feedback)
     {
         //
     }
@@ -53,10 +53,10 @@ class CartController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Modules\Pub\Cart\Models\Cart  $cart
+     * @param  \App\Modules\Pub\Feedback\Models\Feedback  $feedback
      * @return \Illuminate\Http\Response
      */
-    public function edit(Cart $cart)
+    public function edit(Feedback $feedback)
     {
         //
     }
@@ -65,10 +65,10 @@ class CartController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Modules\Pub\Cart\Models\Cart  $cart
+     * @param  \App\Modules\Pub\Feedback\Models\Feedback  $feedback
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Cart $cart)
+    public function update(Request $request, Feedback $feedback)
     {
         //
     }
@@ -76,10 +76,10 @@ class CartController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Modules\Pub\Cart\Models\Cart  $cart
+     * @param  \App\Modules\Pub\Feedback\Models\Feedback  $feedback
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Cart $cart)
+    public function destroy(Feedback $feedback)
     {
         //
     }

@@ -16,6 +16,8 @@ function slider()
   }
   if(slides.length != 0){
     slides[slideIndex-1].style.display = "block";
+  }else{
+    return false;
   }
 
   setTimeout(slider,5000);
