@@ -19,7 +19,7 @@ class ResponseService                                                           
     protected static function SendJsonResponse($status,$code,$errors,$data) // This method transform data into JSON format
     {
         return response()->json([
-          self::responseParams($status,$code,$errors,$data);
+          self::responseParams($status,$code,$errors,$data)
         ]);
     }
 
