@@ -12,7 +12,7 @@ class CartValidation
                         ->where('user_id','=',$user_id)
                         ->where('product_id','=',$item_id);
 
-      if(!empty($request)){
+      if($request){
         return true;
       }
 
