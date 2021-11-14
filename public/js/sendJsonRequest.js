@@ -21,6 +21,10 @@ function AddToCart(form)
         let button = "<button class='btn added-button'>В корзине</button>";
 
         document.getElementById(`product_${data[0].data}`).innerHTML = button;
+      }else if(data[0].status == false && data[0].errors.error == 'Item already added'){
+        return false;
+      }else if(data[0].status == false && data[0].errors.error == 'User not authorized'){
+        window.location.href = '/login';
       }
     }
 
