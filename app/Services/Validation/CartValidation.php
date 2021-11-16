@@ -12,7 +12,8 @@ class CartValidation
                         ->where('user_id','=',$user_id)
                         ->where('product_id','=',$item_id);
 
-      if($request){
+      $state = $request->first();
+      if($state != null){
         return true;
       }
 

@@ -24,6 +24,36 @@ body{
   padding-top:44px;
 }
 
+.navigation__buttons-wrap{
+  display: flex;
+  align-items: center;
+}
+
+.navigation__logout-btn-wrap{
+  list-style: none;
+  margin-right: 13px;
+  cursor:pointer;
+}
+
+.navigation__logout-btn-wrap .navigation__logout-btn .dropdown-item{
+  display: none;
+  text-decoration: none;
+  color:#000;
+}
+
+.navigation__logout-btn-wrap .navigation__logout-text{
+  font-size: 20px;
+  display: flex;
+  height: 100%;
+}
+
+.navigation__logout-btn-wrap .navigation__logout-text img{
+  display: inline;
+  height: 40%;
+  align-items: center;
+  margin-left: 5px;
+}
+
 .navigation__adres-row-wrap input{
   width:650px;
   padding-left: 35px;
