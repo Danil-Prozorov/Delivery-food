@@ -18,9 +18,7 @@ function AddToCart(form)
       let data = JSON.parse(this.responseText);
 
       if(data[0].status == true){ // When status TRUE return button
-        let button = "<button class='btn added-button'>В корзине</button>";
-
-        document.getElementById(`product_${data[0].data}`).innerHTML = button;
+        document.getElementById(`product_${data[0].data}`).innerHTML = "<button class='button white-button'>В корзине</button>";
       }else if(data[0].status == false && data[0].errors.error == 'Item already added'){
         return false;
       }else if(data[0].status == false && data[0].errors.error == 'User not authorized'){
