@@ -29,10 +29,15 @@
                   <div class="content__product-component">
                     <p>{{$prod->ingredients}}</p>
                   </div>
-                  <div>
-                    <button class="button blue-button" onclick="AddToCart({{$prod->id}},{{$prod->price}})">В корзину</button>
-                    <p>{{$prod->price}}&#8381;</p>
+                  <div id="product_{{$prod->id}}">
+                    <form action="{{route('cart.store')}}" method="post" enctype="multipart/form-data" onsubmit="return AddToCart(this);">
+                      {{ csrf_field() }}
+                      <input type="hidden" name="item_id" value="{{$prod->id}}">
+                      <input type="hidden" name="restar_id" value="{{$prod->restaurant_id}}">
+                      <button class="button blue-button" type="submit">В корзину</button>
+                    </form>
                   </div>
+                  <p>{{$prod->price}}&#8381;</p>
                 </div>
             </div>
           @endforeach
