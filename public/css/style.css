@@ -37,8 +37,14 @@ body{
 
 .navigation__logout-btn-wrap .navigation__logout-btn .dropdown-item{
   display: none;
+  position: absolute;
   text-decoration: none;
   color:#000;
+  margin-top:10px;
+  padding-left: 7px;
+  padding-right: 7px;
+  border-top:1px solid lightgrey;
+  border-bottom:1px solid lightgrey;
 }
 
 .navigation__logout-btn-wrap .navigation__logout-text{
