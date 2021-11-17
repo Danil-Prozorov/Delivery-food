@@ -11,9 +11,9 @@
               @if(auth()->user())
                 @auth
                   <ul class='navigation__logout-btn-wrap'>
-                    <li class='navigation__logout-text'>{{ auth()->user()->name }}</li>
-                    <li class='navigation__logout-btn'>
-                      <a class="dropdown-item" href="{{ route('logout') }}"
+                    <li class='navigation__logout-text' onclick="return dropDownItem()">{{ auth()->user()->name }} <span><img src='/images/downarrow_113600.svg'></span></li>
+                    <li class='navigation__logout-btn' id='dd-off'>
+                      <a id='dropItem' class="dropdown-item" href="{{ route('logout') }}"
                           onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">
                           {{ __('Logout') }}
@@ -22,7 +22,7 @@
                           @csrf
                       </form></li>
                   </ul>
-                  <a href="{{ route('cart.index') }}"><button>Корзина</button></a>
+                  <a href="{{ route('cart.index') }}"><button class='button cart-btn white-button'>Корзина</button></a>
                 @endauth
                 @else
                   <a href="{{ route('login') }}"><button class='button login-btn blue-button'>Войти</button></a>
