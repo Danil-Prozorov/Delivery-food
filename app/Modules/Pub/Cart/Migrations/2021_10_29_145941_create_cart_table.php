@@ -18,6 +18,7 @@ class CreateCartTable extends Migration
             $table->integer('user_id')->required();
             $table->integer('product_id')->required();
             $table->string('product_name')->required();
+            $table->string('image_path');
             $table->integer('product_count')->default(1);
             $table->integer('price');
             $table->timestamps();
