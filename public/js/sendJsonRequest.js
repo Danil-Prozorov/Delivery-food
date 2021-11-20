@@ -33,3 +33,27 @@ function AddToCart(form)
   };
   return false;
 }
+
+function addItem(form){ // Create a function for increase the number
+  event.preventDefault();
+  let item_counter = document.getElementById('item__counter').innerHTML; // get the number from inside of element
+  let ajax = new XMLHttpRequest();
+  let dataform = new FormData(form);
+
+  ajax.open('POST',form.getAttribute("action"),true);
+  ajax.send(dataform);
+
+  return false;
+}
+
+function minusItem(form){ //Create a function for reduce the number
+  event.preventDefault();
+  let item_counter = document.getElementById('item__counter').innerHTML; // get the number from inside of element
+  let ajax = new XMLHttpRequest();
+  let dataform = new FormData(form);
+
+  ajax.open('POST',form.getAttribute("action"),true);
+  ajax.send(dataform);
+
+  return false;
+}
