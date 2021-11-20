@@ -22,9 +22,23 @@
           </div>
           <div class="cart__item-controll-wrapper">
             <div class="cart__item-counter">
-              <button type="button" name="button" onclick="return minusItem({{$item->product_id}})">-</button>
-                <p>{{$item->product_count}}</p>
-              <button type="button" name="button" onclick="return addItem({{$item->product_id}})">+</button>
+                <form class="item__counter-form" action="{{route('cart.update',['id' => $item->id])}}" method="post" onsubmit="return minusItem(this);">
+                  {{ csrf_field() }}
+                  @method('PATCH')
+                  <input type="hidden" name="product_id" value="{{$item->product_id}}">
+                  <input type="hidden" name="id" value="{{$item->id}}">
+                  <input type="hidden" name="operation" value="reduce">
+                  <button type="submit" name="button">-</button>
+                </form>
+                <p id='item__counter'>{{$item->product_count}}</p>
+                <form class="item__counter-form" action="{{route('cart.update',['id' => $item->id])}}" method="post" onsubmit="return addItem(this);">
+                  {{ csrf_field() }}
+                  @method('PATCH')
+                  <input type="hidden" name="product_id" value="{{$item->product_id}}">
+                  <input type="hidden" name="id" value="{{$item->id}}">
+                  <input type="hidden" name="operation" value="increase">
+                  <button type="submit" name="button">+</button>
+                </form>
             </div>
             <div class="cart__item-button-destroy">
               <button><p>Отмена</p></button>
