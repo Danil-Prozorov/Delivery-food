@@ -2,6 +2,7 @@
 
 namespace App\Modules\Pub\Cart\Controllers;
 
+use App\Modules\Admin\User\Models\User;
 use App\Modules\Pub\Cart\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -22,9 +23,10 @@ class CartController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(User $user)
     {
-        return view('Pub.Cart.index');
+        $user = $user->find(Auth::id());
+        return view('Pub.Cart.index',compact('user'));
     }
 
     public function store(Request $request)
@@ -36,8 +38,10 @@ class CartController extends Controller
 
         if(!RestaurValid::restaurantExist($data['restar_id']) && !RestaurValid::restaurantProductExist($data['item_id'])){
           return Response::notFound();
+        }elseif(!Auth::user()){
+          return Response::notFound(['error'=>'User not authorized']);
         }elseif(CartValidation::existInCart($data['item_id'],Auth::id())){
-          return Response::notFound();
+          return Response::notFound(['error' => 'Item already added'],$data['item_id']);
         }
 
         $product = Restaurants_products::find($data['item_id']);
@@ -52,7 +56,12 @@ class CartController extends Controller
 
         Cart::create($data);
 
-        return Response::success();
+        return Response::success([$data['product_id']]);
+    }
+
+    public function update(Request $request,$id)
+    {
+      
     }
 
 }
