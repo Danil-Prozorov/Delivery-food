@@ -43,6 +43,11 @@ function addItem(form){ // Create a function for increase the number
   ajax.open('POST',form.getAttribute("action"),true);
   ajax.send(dataform);
 
+  if((+item_counter) != NaN && (+item_counter) >= 0){
+    let text = ""+item_counter++;
+    document.getElementById('item__counter').innerHTML = `${+item_counter++}`;
+  }
+
   return false;
 }
 
@@ -54,6 +59,11 @@ function minusItem(form){ //Create a function for reduce the number
 
   ajax.open('POST',form.getAttribute("action"),true);
   ajax.send(dataform);
+
+  if((+item_counter) != NaN && (+item_counter) > 0){
+    let text = ""+item_counter--;
+    document.getElementById('item__counter').innerHTML = `${+item_counter--}`;
+  }
 
   return false;
 }
