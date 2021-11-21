@@ -7,10 +7,8 @@ use App\Modules\Pub\Cart\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
-use App\Services\Response\ResponseService as Response;
-use App\Services\Validation\RestaurantsValidation as RestaurValid;
-use App\Modules\Pub\Restaurants\Models\Restaurants_products;
 use App\Services\Validation\CartValidation;
+use App\Services\Requests\CartRequests;
 
 class CartController extends Controller
 {
@@ -61,7 +59,14 @@ class CartController extends Controller
 
     public function update(Request $request,$id)
     {
-      
+      $data = $request->validate([
+        'product_id' => 'required',
+        'id'         => 'required',
+        'operation'  => 'required',
+      ]);
+
+      $user_id = Auth::id();
+      return CartValidation::chooseOperation($data['operation'],$user_id,$request,$id);
     }
 
 }
