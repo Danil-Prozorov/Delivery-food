@@ -19,4 +19,13 @@ class CartValidation
 
       return false;
     }
+
+    public static function sameId($first_id,$second_id)
+    {
+      if($first_id == $second_id) {
+        return true;
+      }
+
+      return false;
+    }
 }
