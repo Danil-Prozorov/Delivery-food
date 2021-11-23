@@ -244,7 +244,54 @@ main{
 }
 /* Content end */
 
+/* Cart header styles */
+.cart__header{
+  margin:40px 0px 20px 0px;
+}
 
+.cart__header ul{
+  list-style: none;
+  display: flex;
+}
+
+.cart__header a {
+  text-decoration: none;
+  color:#000;
+  margin-right: 10px;
+}
+
+.cart__header a:hover{
+  color:#1890FF;
+}
+/* End header styles */
+
+/* Cart content */
+.cart__item-wrapper{
+  margin-top:10px;
+  padding:4px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border:1px solid lightgrey;
+  max-width: 600px;
+}
+
+.cart__item-image-wrapper img{
+  max-width: 250px;
+  border-radius: 4px;
+}
+.cart__counter-button{
+  color:#fff;
+  background-color:#1890FF;
+  border:0px;
+  width:20px;
+}
+.cart__item-controll-wrapper{
+  display: flex;
+  align-items: center;
+}
+/* End cart content */
 
 /* End other styles */
 
