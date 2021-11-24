@@ -12,16 +12,12 @@ use Illuminate\Http\Request;
 
 class CartRequests
 {
-  public static function create($request)
-  {
-
-  }
 
   public static function counterIncrease($request,$id)
   {
     $item = Cart::find($id);
 
-    if(!CartValidation::sameId($item['user_id'],Auth::id())){
+    if(!CartValidation::sameId($item['user_id'],Auth::id())) {
       return Response::notFound();
     }
 
@@ -38,7 +34,10 @@ class CartRequests
   {
     $item = Cart::find($id);
 
-    if(!CartValidation::sameId($item['user_id'],Auth::id())){
+    if(!CartValidation::sameId($item['user_id'],Auth::id())) {
+      return Response::notFound();
+    }
+    if($item['product_count'] <= 0) {
       return Response::notFound();
     }
 
