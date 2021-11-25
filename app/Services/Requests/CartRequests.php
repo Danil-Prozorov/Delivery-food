@@ -4,8 +4,6 @@ namespace App\Services\Requests;
 
 use App\Modules\Pub\Cart\Models\Cart;
 use App\Services\Response\ResponseService as Response;
-use App\Services\Validation\RestaurantsValidation as RestaurValid;
-use App\Modules\Pub\Restaurants\Models\Restaurants_products;
 use App\Services\Validation\CartValidation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
