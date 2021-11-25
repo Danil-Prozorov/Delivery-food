@@ -13,7 +13,7 @@
     </aside>
     <aside class="cart__container">
       @foreach($user->cart as $item)
-        <div class="cart__item-wrapper">
+        <div class="cart__item-wrapper" id="product_{{$item->id}}">
           <div class="cart__item-image-wrapper">
             <img src="storage/{{$item->image_path}}" alt="food photo">
           </div>
@@ -28,7 +28,7 @@
                   <input type="hidden" name="product_id" value="{{$item->product_id}}">
                   <input type="hidden" name="id" value="{{$item->id}}">
                   <input type="hidden" name="operation" value="reduce">
-                  <button type="submit" name="button">-</button>
+                  <button class='cart__counter-button' type="submit" name="button">-</button>
                 </form>
                 <p id='item__counter'>{{$item->product_count}}</p>
                 <form class="item__counter-form" action="{{route('cart.update',['id' => $item->id])}}" method="post" onsubmit="return addItem(this);">
@@ -37,11 +37,15 @@
                   <input type="hidden" name="product_id" value="{{$item->product_id}}">
                   <input type="hidden" name="id" value="{{$item->id}}">
                   <input type="hidden" name="operation" value="increase">
-                  <button type="submit" name="button">+</button>
+                  <button class='cart__counter-button' type="submit" name="button">+</button>
                 </form>
             </div>
             <div class="cart__item-button-destroy">
-              <button><p>Отмена</p></button>
+              <form class="item__counter-form" action="{{route('cart.destroy',['id' => $item->id])}}" method="post" onsubmit="return deleteItem(this);">
+                @csrf
+                @method('DELETE')
+                <button class='cart__item-cancel-btn' type='submit'><p>Отмена</p></button>
+              </form>
             </div>
           </div>
         </div>
