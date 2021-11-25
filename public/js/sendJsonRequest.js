@@ -67,3 +67,24 @@ function minusItem(form){ //Create a function for reduce the number
 
   return false;
 }
+
+function deleteItem(form) {
+  event.preventDefault();
+  let ajax = new XMLHttpRequest();
+  let dataform =  new FormData(form);
+
+  ajax.open('POST',form.getAttribute("action"),true);
+  ajax.send(dataform);
+
+  ajax.onreadystatechange = function() {
+    if(this.status == 200 && this.readyState == 4) {
+      let data = JSON.parse(this.responseText);
+
+      if(data[0].status == true) {
+        document.getElementById(`product_${data[0].data.id}`).innerHTML = " ";
+      }
+
+    }
+  };
+  return false;
+}
