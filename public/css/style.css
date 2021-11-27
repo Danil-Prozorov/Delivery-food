@@ -155,7 +155,7 @@ body{
 
 /* Other styles */
 main{
-  min-height: 800px;
+  min-height: 600px;
 }
 
 .content__search-bar{
@@ -175,19 +175,19 @@ main{
 
 
 /* Cotent for restaurants and products */
-.content__restaurants{
+.content__restaurants,.cart__container{
   display: grid;
   grid-template-columns: repeat(3,1fr);
   grid-column-gap:5%;
   grid-auto-flow: row dense;
 }
 
-.content__restaurants{
+.content__restaurants,.cart__item-wrapper{
   max-width: 384px;
   border-radius: 8px 8px 0px 0px;
 }
 
-.content__restauran{
+.content__restauran, .cart__item-wrapper{
   margin-bottom: 30px;
   background-color: #fff;
   box-shadow: 1px 7px 12px rgba(158, 158, 163, 0.2);
@@ -202,7 +202,7 @@ main{
   margin-bottom: 13px;
 }
 
-.content__previev-photo img{
+.content__previev-photo img, .cart__item-image-wrapper img{
   max-width: 384px;
   border-radius: 8px 8px 0px 0px;
 }
@@ -256,7 +256,7 @@ main{
 
 .cart__header a {
   text-decoration: none;
-  color:#000;
+  color:#595959;
   margin-right: 10px;
 }
 
@@ -266,30 +266,32 @@ main{
 /* End header styles */
 
 /* Cart content */
-.cart__item-wrapper{
-  margin-top:10px;
-  padding:4px;
-  border-radius: 5px;
+
+.cart__item-counter{
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border:1px solid lightgrey;
-  max-width: 600px;
 }
 
-.cart__item-image-wrapper img{
-  max-width: 250px;
-  border-radius: 4px;
-}
 .cart__counter-button{
   color:#fff;
   background-color:#1890FF;
   border:0px;
-  width:20px;
+  width:25px;
+  height: 20px;
+  border-radius: 4px;
+  cursor: pointer;
 }
+
 .cart__item-controll-wrapper{
   display: flex;
   align-items: center;
+}
+
+.cart__item-cancel-btn{
+  color:#fff;
+  background-color: red;
+  padding:5px;
+  border:0px;
+  border-radius: 4px;
 }
 /* End cart content */
 
