@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Services\Validation\CartValidation;
 use App\Services\Requests\CartRequests;
+use App\Services\Validation\RestaurantsValidation as RestaurValid;
+use App\Modules\Pub\Restaurants\Models\Restaurants_products;
+use App\Services\Response\ResponseService as Response;
 
 class CartController extends Controller
 {
@@ -48,6 +51,7 @@ class CartController extends Controller
           'user_id'       => Auth::id(),
           'product_id'    => $data['item_id'],
           'product_name'  => $product['product_name'],
+          'image_path'    => $product['image_path'],
           'product_count' => 1,
           'price'         => $product['price']
         );
@@ -67,6 +71,17 @@ class CartController extends Controller
 
       $user_id = Auth::id();
       return CartValidation::chooseOperation($data['operation'],$user_id,$request,$id);
+    }
+
+    public function destroy($id) {
+      $item = Cart::find($id);
+
+      if(!CartValidation::sameId($item['user_id'],Auth::id())) {
+        return Response::notFound();
+      }
+
+      $item->delete();
+      return Response::success(['id' => $id]);
     }
 
 }
