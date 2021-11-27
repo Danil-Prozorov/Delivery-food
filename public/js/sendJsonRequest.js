@@ -81,7 +81,7 @@ function deleteItem(form) {
       let data = JSON.parse(this.responseText);
 
       if(data[0].status == true) {
-        document.getElementById(`product_${data[0].data.id}`).innerHTML = " ";
+        document.getElementById(`product_${data[0].data.id}`).style.display = "none";
       }
 
     }
