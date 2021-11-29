@@ -293,8 +293,77 @@ main{
   border:0px;
   border-radius: 4px;
 }
+
+.confirm-order{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.confirm-order button{
+  transition: 0.4s;
+}
+
+.confirm-order button:hover{
+  transform: scale(1.04);
+  transition: 0.4s;
+}
 /* End cart content */
 
+/* Start confirm order styles */
+.order{
+  padding-top:40px;
+}
+
+.order__item{
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid lightgrey;
+  height:30px;
+  margin-bottom: 20px;
+}
+
+.order__list{
+  display: flex;
+}
+
+.order__wrapper{
+  width: 100%;
+}
+
+.order__back-link-wrapper img{
+  height: 20px;
+  margin-right: 10px;
+}
+
+.price-line{
+  text-align: right;
+}
+
+.order__submit-btn{
+  text-align: center;
+  margin-top: 20px;
+}
+
+.order__submit-btn button{
+    transition: 0.4s;
+}
+
+.order__submit-btn button:hover{
+  transition: 0.4s;
+  transform: scale(1.04);
+}
+/* End confirm order styles */
+/* Map styles */
+#map{
+  max-width: 100%;
+  width:100%;
+}
+/* End Map styles */
+
+.bold{
+  font-weight: bold;
+}
 /* End other styles */
 
 /* Footer styles */
