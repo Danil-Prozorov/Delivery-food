@@ -6,9 +6,9 @@
   <section class='cart container'>
     <aside class="cart__header">
       <ul class="cart__header-list">
-        <li><a href="{{route('cart.index')}}">Корзина</a></li>
-        <li><a href='#'>В процессе</a></li>
-        <li><a href='#'>Завершёные</a></li>
+        <li><a href="{{route('cart.index')}}">Корзина ({{count($user->cart)}})</a></li>
+        <li><a href='#'>В процессе ()</a></li>
+        <li><a href='#'>Завершёные ()</a></li>
       </ul>
     </aside>
     <aside class="cart__container">
@@ -22,7 +22,7 @@
           </div>
           <div class="cart__item-controll-wrapper">
             <div class="cart__item-counter">
-                <form class="item__counter-form" action="{{route('cart.update',['id' => $item->id])}}" method="post" onsubmit="return minusItem(this);">
+                <form class="item__counter-form" action="{{route('cart.update',['id' => $item->id])}}" method="post" onsubmit="return minusItem(this,{{$item->id}});">
                   {{ csrf_field() }}
                   @method('PATCH')
                   <input type="hidden" name="product_id" value="{{$item->product_id}}">
@@ -30,8 +30,8 @@
                   <input type="hidden" name="operation" value="reduce">
                   <button class='cart__counter-button' type="submit" name="button">-</button>
                 </form>
-                <p id='item__counter'>{{$item->product_count}}</p>
-                <form class="item__counter-form" action="{{route('cart.update',['id' => $item->id])}}" method="post" onsubmit="return addItem(this);">
+                <p id='item__counter-{{$item->id}}'>{{$item->product_count}}</p>
+                <form class="item__counter-form" action="{{route('cart.update',['id' => $item->id])}}" method="post" onsubmit="return addItem(this,{{$item->id}});">
                   {{ csrf_field() }}
                   @method('PATCH')
                   <input type="hidden" name="product_id" value="{{$item->product_id}}">
@@ -51,6 +51,9 @@
         </div>
       @endforeach
     </aside>
+    <div class='confirm-order'>
+      <a href="{{route('order.index')}}"><button type="button" name="button" class='button blue-button'>Подтвердить заказ</button></a>
+    </div>
   </section>
 @endsection
 @section('footer')
