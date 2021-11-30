@@ -9,3 +9,7 @@ Route::group(['prefix' => 'restaurants', 'middleware' => []], function () {
     Route::put('/{restaurant}', 'RestaurantsController@update')->name('restaurants.update');
     Route::delete('/{restaurant}', 'RestaurantsController@destroy')->name('restaurants.delete');
 });
+
+Route::group(['prefix' => 'cart','middleware' => ['auth']], function () {
+  Route::get('/order','OrderController@index')->name('order.index');
+});
