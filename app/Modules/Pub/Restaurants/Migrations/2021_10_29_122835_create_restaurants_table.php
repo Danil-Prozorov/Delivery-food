@@ -36,12 +36,21 @@ class CreateRestaurantsTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->integer('restaurant_id')->required()->references('id')->on('restaurants');
-            $table->text('product_name')->required();
-            $table->text('ingredients')->required();
-            $table->text('image_path');
+            $table->integer('user_id')->required()->references('id')->on('users');
+            $table->integer('order_detail_id')->required()->references('id')->on('order_detais');
+            $table->text('products_names')->required();
             $table->integer('total_price');
             $table->text('adres');
+            $table->text('status')->nullable();
             $table->timestamps();
+        });
+
+        Schema::create('order_details', function (Blueprint $table) {
+            $table->id();
+            $table->integer('order_id')->required()->references('id')->on('orders');
+            $table->text('item_name')->required();
+            $table->integer('item_count')->required()->default(1);
+            $table->integer('price')->required();
         });
     }
 
