@@ -14,3 +14,15 @@
 
   }
 }
+
+{
+  function writeAdresIntoForm(adres){
+    let adresLine = adres.value;
+    let emptyLine = document.getElementById('adres');
+
+    if(emptyLine != false){
+      emptyLine.value = adresLine;
+    }
+
+  }
+}
