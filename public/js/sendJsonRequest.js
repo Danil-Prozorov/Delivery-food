@@ -88,3 +88,14 @@ function deleteItem(form) {
   };
   return false;
 }
+
+//  CONFIRM ORDER
+function confirmOrder(form) {
+  event.preventDefault();
+  let ajax = new XMLHttpRequest();
+  let dataform = new FormData(form);
+
+  ajax.open('POST',form.getAttribute("action"),true);
+  ajax.send(dataform);
+  return false;
+}

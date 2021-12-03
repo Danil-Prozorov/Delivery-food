@@ -17,13 +17,16 @@
     </div>
     <div class="order__wrapper">
       @foreach($user->cart as $item)
-        <div class="order__items">
-          <ul class="order__item">
-            <li class="order__name">Название: {{$item->product_name}}</li>
-            <li class="order__counter"> Колл-во: {{$item->product_count}}</li>
-            <li class="order__price">Цена: {{$item->product_count*$item->price}}&#8381;</li>
-          </ul>
-        </div>
+        @if($item->product_count > 0)
+          <div class="order__items">
+            <ul class="order__item">
+              <li class="order__name">Название: {{$item->product_name}}</li>
+              <li class="order__counter"> Колл-во: {{$item->product_count}}</li>
+              <li class="order__price">Цена: {{$item->product_count*$item->price}}&#8381;</li>
+            </ul>
+          </div>
+          @else
+        @endif
       @endforeach
     </div>
   </aside>
@@ -31,9 +34,11 @@
     <p class='price-line__total-price bold'>Общая цена: {{$fullCost}}&#8381;</p>
   </aside>
   <aside class="order__submit-btn">
-    <form class="order__send" action="index.html" method="post">
+    <form class="order__send" action="{{route('order.create')}}" method="post" onsubmit="return confirmOrder(this);">
       @csrf
-      <button type="button" name="button" class='button blue-button'>Заказать</button>
+      <input type="hidden" name="adres" id='adres' value="">
+      <input type="hidden" name="user_id" value="{{$user->id}}">
+      <button type="submit" name="button" class='button blue-button'>Заказать</button>
     </form>
   </aside>
 </section>

@@ -5,7 +5,12 @@
               <a href='/restaurants'><img src="/images/logo.svg" alt="logo"></a>
             </div>
             <div class="navigation__adres-row-wrap">
-               <input type="text" id="search" name="search" placeholder="Адрес доставки">
+               <input type="text" id="search" name="search" onchange="return writeAdresIntoForm(this)" placeholder="Адрес доставки">
+               @error('search')
+                <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                </span>
+              @enderror
             </div>
             <div class="navigation__buttons-wrap">
               @if(auth()->user())
