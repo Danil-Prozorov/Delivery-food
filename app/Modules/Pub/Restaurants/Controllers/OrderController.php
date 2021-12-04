@@ -2,10 +2,15 @@
 namespace App\Modules\Pub\Restaurants\Controllers;
 
 use App\Modules\Pub\restaurants\Models\Restaurant;
+use App\Modules\Pub\Restaurants\Models\Orders;
 use App\Modules\Admin\User\Models\User;
+use App\Modules\Pub\Cart\Models\Cart;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Services\Response\ResponseService as Response;
+use App\Services\Validation\CartValidation;
+use App\Services\Requests\OrderRequests;
 
 class OrderController extends Controller
 {
@@ -26,9 +31,18 @@ class OrderController extends Controller
 
   }
 
-  public function create()
+  public function create(Request $request)
   {
+    $data = $request->validate([
+      'adres' => 'required',
+      'user_id' => 'required',
+    ]);
 
+    if(!CartValidation::sameId($data['user_id'],Auth::id())){
+      return Response::notFound();
+    }
+
+    return OrderRequests::orderCreate($request);
   }
 
   public function store()
