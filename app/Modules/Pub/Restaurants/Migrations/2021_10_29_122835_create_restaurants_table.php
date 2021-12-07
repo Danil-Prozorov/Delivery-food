@@ -42,12 +42,13 @@ class CreateRestaurantsTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('order_details', function (Blueprint $table) {
+        Schema::create('orders_details', function (Blueprint $table) {
             $table->id();
             $table->integer('order_id')->required()->references('id')->on('orders');
             $table->text('item_name')->required();
             $table->integer('item_count')->required()->default(1);
             $table->integer('price')->required();
+            $table->timestamps();
         });
     }
 
