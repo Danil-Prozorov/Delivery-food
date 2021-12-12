@@ -8,7 +8,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Controller;
 use App\Services\Validation\CartValidation;
-use App\Services\Requests\CartRequests;
 use App\Services\Validation\RestaurantsValidation as RestaurValid;
 use App\Modules\Pub\Restaurants\Models\Restaurants_products;
 use App\Services\Response\ResponseService as Response;
@@ -30,24 +29,24 @@ class CartController extends Controller
         return view('Pub.Cart.index',compact('user'));
     }
 
-    public function store(Request $request)
+    public function store(Request $request)  // Here we get data from AJAX request
     {
-        $data = $request->validate([
+        $data = $request->validate([ // Validate it with basic Laravel method for Requests
           'item_id'   => 'required',
           'restar_id' => 'required'
         ]);
 
-        if(!RestaurValid::restaurantExist($data['restar_id']) && !RestaurValid::restaurantProductExist($data['item_id'])){
-          return Response::notFound();
-        }elseif(!Auth::user()){
+        if (!RestaurValid::restaurantExist($data['restar_id']) && !RestaurValid::restaurantProductExist($data['item_id'])) { // Checking exist restaurant and product in this restaurant
+          return Response::notFound(); // If no, then return JSON response with code 404 not found
+        } elseif (!Auth::user()) { //If user anauthorized return JSON 404 code again
           return Response::notFound(['error'=>'User not authorized']);
-        }elseif(CartValidation::existInCart($data['item_id'],Auth::id())){
-          return Response::notFound(['error' => 'Item already added'],$data['item_id']);
+        } elseif (CartValidation::existInCart($data['item_id'], Auth::id())) { // Checking, exist in our cart item with the same ID and if it's true, return 404
+          return Response::notFound(['error' => 'Item already added'], $data['item_id']);
         }
 
-        $product = Restaurants_products::find($data['item_id']);
+        $product = Restaurants_products::find($data['item_id']); // Select all information about product
 
-        $data = array(
+        $data = array( // here compact data for insert it in new cart model
           'user_id'       => Auth::id(),
           'product_id'    => $data['item_id'],
           'product_name'  => $product['product_name'],
@@ -56,9 +55,9 @@ class CartController extends Controller
           'price'         => $product['price']
         );
 
-        Cart::create($data);
+        Cart::create($data); // Create row in DB with data what we compact in variable $data
 
-        return Response::success([$data['product_id']]);
+        return Response::success([$data['product_id']]); // return JSON response with status 200 and item id what we added in DB for let JS hide function for send this request again
     }
 
     public function update(Request $request,$id)
