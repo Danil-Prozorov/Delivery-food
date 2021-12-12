@@ -16,28 +16,29 @@ class OrderRequests
     return self::makeOrder($request);
   }
 
-  protected static function makeOrder($request){
+  protected static function makeOrder($request)
+  {
     $cart = Cart::all()
-                  ->where('user_id','=',Auth::id());
+                  ->where('user_id', '=', Auth::id());
     $dataOrder = array(
-      'user_id' => Auth::id(),
+      'user_id'     => Auth::id(),
       'total_price' => $request['total_price'],
-      'adres' => $request['adres'],
-      'status' => "In proccess",
+      'adres'       => $request['adres'],
+      'status'      => "In proccess",
     );
 
     Orders::create($dataOrder);
 
-    $orderCreated = Orders::all()->where('user_id','=',Auth::id());
+    $orderCreated = Orders::all()->where('user_id', '=' ,Auth::id());
     $orderCreated = $orderCreated->last()->id;
 
-    self::createOrderDetails($cart,array(),$orderCreated);
+    self::createOrderDetails($cart, array(), $orderCreated);
     self::cleanCart($cart,array());
 
     return Response::success();
   }
 
-  protected static function createOrderDetails($array,$results,$orderId)
+  protected static function createOrderDetails($array, $results, $orderId)
   {
     if(count($array) == count($results)){
       return $results;
@@ -59,15 +60,13 @@ class OrderRequests
   protected static function cleanCart($array,$result)
   {
     $counterResult = count($result);
-    if(count($array) == $counterResult){
+    if (count($array) == $counterResult) {
 
-    }elseif(count($array) > $counterResult){
-      $counter = $counterResult;
-      $itemId  = Cart::find($counter);
+    } elseif(count($array) > $counterResult) {
+        $array[$counterResult]->delete();
 
-      $itemId->delete();
-
-      return cleanCart($array,$result);
+        array_push($result,0);
+        return self::cleanCart($array,$result);
     }
   }
 }
