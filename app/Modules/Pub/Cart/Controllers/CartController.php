@@ -10,10 +10,12 @@ use App\Http\Controllers\Controller;
 use App\Services\Validation\CartValidation;
 use App\Services\Validation\RestaurantsValidation as RestaurValid;
 use App\Modules\Pub\Restaurants\Models\Restaurants_products;
-use App\Services\Response\ResponseService as Response;
+use App\Services\Traits\Response\ResponseJSON;
 
 class CartController extends Controller
 {
+    use ResponseJSON;
+
     public function __construct()
     {
         $this->middleware('auth');
@@ -37,11 +39,11 @@ class CartController extends Controller
         ]);
 
         if (!RestaurValid::restaurantExist($data['restar_id']) && !RestaurValid::restaurantProductExist($data['item_id'])) { // Checking exist restaurant and product in this restaurant
-          return Response::notFound(); // If no, then return JSON response with code 404 not found
+          return self::notFound(); // If no, then return JSON response with code 404 not found
         } elseif (!Auth::user()) { //If user anauthorized return JSON 404 code again
-          return Response::notFound(['error'=>'User not authorized']);
+          return self::notFound(['error'=>'User not authorized']);
         } elseif (CartValidation::existInCart($data['item_id'], Auth::id())) { // Checking, exist in our cart item with the same ID and if it's true, return 404
-          return Response::notFound(['error' => 'Item already added'], $data['item_id']);
+          return self::notFound(['error' => 'Item already added'], $data['item_id']);
         }
 
         $product = Restaurants_products::find($data['item_id']); // Select all information about product
@@ -57,7 +59,7 @@ class CartController extends Controller
 
         Cart::create($data); // Create row in DB with data what we compact in variable $data
 
-        return Response::success([$data['product_id']]); // return JSON response with status 200 and item id what we added in DB for let JS hide function for send this request again
+        return self::success([$data['product_id']]); // return JSON response with status 200 and item id what we added in DB for let JS hide function for send this request again
     }
 
     public function update(Request $request,$id)
@@ -76,11 +78,11 @@ class CartController extends Controller
       $item = Cart::find($id);
 
       if(!CartValidation::sameId($item['user_id'],Auth::id())) {
-        return Response::notFound();
+        return self::notFound();
       }
 
       $item->delete();
-      return Response::success(['id' => $id]);
+      return self::success(['id' => $id]);
     }
 
 }
