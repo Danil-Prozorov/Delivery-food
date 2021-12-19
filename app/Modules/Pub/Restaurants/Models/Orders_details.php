@@ -1,13 +1,20 @@
 <?php
 
-namespace App\Models;
+namespace App\Modules\Pub\Restaurants\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Order_details extends Model
+class Orders_details extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+      'order_id',
+      'item_name',
+      'item_count',
+      'price'
+    ];
 
     public function order()
     {

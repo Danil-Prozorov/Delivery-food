@@ -4,70 +4,88 @@ namespace App\Services\Requests;
 
 use App\Modules\Pub\Restaurants\Models\Orders;
 use App\Modules\Pub\Restaurants\Models\Orders_details;
-use App\Modules\Admin\User\Models\User;
+use App\Services\Interfaces\OrderRequestInterface;
 use App\Modules\Pub\Cart\Models\Cart;
 use Illuminate\Support\Facades\Auth;
-use App\Services\Response\ResponseService as Response;
+use App\Services\Traits\Response\ResponseJSON;
 
-class OrderRequests
+class OrderRequests implements OrderRequestInterface
 {
-  public static function orderCreate($request)
+  use ResponseJSON;
+
+  protected $cart;
+
+  public function __construct()
   {
-    return self::makeOrder($request);
+      $this->cart = Cart::all()
+                    ->where('user_id', '=', Auth::id());
   }
 
-  protected static function makeOrder($request){
-    $cart = Cart::all()
-                  ->where('user_id','=',Auth::id());
-    $dataOrder = array(
-      'user_id' => Auth::id(),
-      'total_price' => $request['total_price'],
-      'adres' => $request['adres'],
-      'status' => "In proccess",
-    );
-
-    Orders::create($dataOrder);
-
-    $orderCreated = Orders::all()->where('user_id','=',Auth::id());
-    $orderCreated = $orderCreated->last()->id;
-
-    self::createOrderDetails($cart,array(),$orderCreated);
-    self::cleanCart($cart,array());
-
-    return Response::success();
-  }
-
-  protected static function createOrderDetails($array,$results,$orderId)
+  public function orderCreate($request)
   {
-    if(count($array) == count($results)){
-      return $results;
-    }else{
-      $resultCount = count($results);
-
-      $data = array(
-          'order_id'   => $orderId,
-          'item_name'  => $array[$resultCount]['product_name'],
-          'item_count' => $array[$resultCount]['product_count'],
-          'price'      => $array[$resultCount]['price'],
+      $dataOrder = array(
+          'user_id'     => Auth::id(),
+          'total_price' => $request['total_price'],
+          'adres'       => $request['adres'],
+          'status'      => "In proccess",
       );
-      Orders_details::create($data);
-      array_push($results,$data);
-      return self::createOrderDetails($array,$results,$orderId);
-    }
+
+      Orders::create($dataOrder);
+
+      $orderCreated = Orders::all()->where('user_id', '=' ,Auth::id());
+      $orderCreated = $orderCreated->last()->id;
+
+      self::createOrderDetails($this->cart, array(), $orderCreated);
+      self::cleanCart($this->cart,array());
+
+      return self::success();
   }
 
-  protected static function cleanCart($array,$result)
+  protected function createOrderDetails($array, $results, $orderId)
+  {
+     if (count($array) == count($results)) {
+       return $results;
+     } else {
+       $resultCount = count($results);
+
+       $data = array(
+           'order_id'   => $orderId,
+           'item_name'  => $array[$resultCount]['product_name'],
+           'item_count' => $array[$resultCount]['product_count'],
+           'price'      => $array[$resultCount]['price'],
+       );
+
+       Orders_details::create($data);
+       array_push($results,$data);
+       return $this->createOrderDetails($array,$results,$orderId);
+     }
+  }
+
+  protected function cleanCart($array,$result)
   {
     $counterResult = count($result);
-    if(count($array) == $counterResult){
+    if (count($array) == $counterResult) {
 
-    }elseif(count($array) > $counterResult){
-      $counter = $counterResult;
-      $itemId  = Cart::find($counter);
+    } elseif (count($array) > $counterResult) {
+        $array[$counterResult]->delete();
 
-      $itemId->delete();
-
-      return cleanCart($array,$result);
+        array_push($result,0);
+        return $this->cleanCart($array,$result);
     }
+  }
+
+  public function cancelOrder()
+  {
+
+  }
+
+  public function completeOrder()
+  {
+      // TODO: Implement completeOrder() method.
+  }
+
+  public function getOrderDetails()
+  {
+      // TODO: Implement getOrderDetails() method.
   }
 }
