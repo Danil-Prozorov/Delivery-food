@@ -4,7 +4,7 @@ namespace App\Services\Interfaces;
 
 interface CartRequestInterface
 {
-    public function counterIncrease($request,$id);
+    public function counterIncrease($id);
 
-    public function counterReduce($request,$id);
+    public function counterReduce($id);
 }
