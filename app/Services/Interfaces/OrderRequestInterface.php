@@ -6,9 +6,9 @@ interface OrderRequestInterface
 {
     public function orderCreate($request);
 
-    public function cancelOrder();
+    public function cancelOrder($orderID);
 
-    public function completeOrder();
+    public function completeOrder($orderID);
 
-    public function getOrderDetails();
+    public function getOrderDetails($orderID);
 }

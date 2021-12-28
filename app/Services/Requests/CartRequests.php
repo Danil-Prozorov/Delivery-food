@@ -3,20 +3,21 @@
 namespace App\Services\Requests;
 
 use App\Modules\Pub\Cart\Models\Cart;
-use App\Services\Response\ResponseService as Response;
+use App\Services\Traits\Response\ResponseJSON;
+use App\Services\Interfaces\CartRequestInterface;
 use App\Services\Validation\CartValidation;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\Request;
 
-class CartRequests
+class CartRequests implements CartRequestInterface
 {
+  use ResponseJSON;
 
-  public static function counterIncrease($request,$id)
+  public function counterIncrease($id)
   {
     $item = Cart::find($id);
 
-    if(!CartValidation::sameId($item['user_id'],Auth::id())) {
-      return Response::notFound();
+    if (!CartValidation::sameId($item['user_id'],Auth::id())) {
+      return self::notFound();
     }
 
     $data = array(
@@ -25,18 +26,19 @@ class CartRequests
 
     $item->update($data);
 
-    return Response::success();
+    return self::success();
   }
 
-  public static function counterReduce($request,$id)
+  public function counterReduce($id)
   {
     $item = Cart::find($id);
 
-    if(!CartValidation::sameId($item['user_id'],Auth::id())) {
-      return Response::notFound();
+    if (!CartValidation::sameId($item['user_id'], Auth::id())) {
+      return self::notFound();
     }
-    if($item['product_count'] <= 0) {
-      return Response::notFound();
+
+    if ($item['product_count'] <= 0) {
+      return self::notFound();
     }
 
     $data = array(
@@ -45,6 +47,6 @@ class CartRequests
 
     $item->update($data);
 
-    return Response::success();
+    return self::success();
   }
 }

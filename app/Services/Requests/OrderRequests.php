@@ -74,18 +74,30 @@ class OrderRequests implements OrderRequestInterface
     }
   }
 
-  public function cancelOrder()
+  public function cancelOrder($orderID)
   {
 
   }
 
-  public function completeOrder()
+  public function completeOrder($orderID)
   {
-      // TODO: Implement completeOrder() method.
+      // Find the order with the same orderID
+      $order = Order::where('id','=',$orderID)->get();
+      if()
+      return self::success();
   }
 
-  public function getOrderDetails()
+  public function getOrderDetails($orderID) // get userID and orderID
   {
-      // TODO: Implement getOrderDetails() method.
+      //get data form DB
+      $orderData = Orders_details::where('order_id', '=', $orderID)->get();
+
+      //return it
+      return $orderData;
+  }
+
+  public function getAllOrderDetails($userID)
+  {
+
   }
 }
