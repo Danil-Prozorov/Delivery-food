@@ -8,5 +8,4 @@ interface CartValidationInterface
 
     public function cartEmpty();
 
-    public function sameId($first_id, $second_id);
 }
