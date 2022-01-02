@@ -17,7 +17,7 @@ class CreateFeedbackTable extends Migration
             $table->id();
             $table->integer('restaurant_id')->required()->references('id')->on('restaurants');
             $table->integer('order_id')->required()->references('id')->on('orders');
-            $table->integer('stars_count');
+            $table->smallInteger('stars_count');
             $table->timestamps();
         });
     }

@@ -26,10 +26,6 @@ function AddToCart(form)
       }
     }
 
-    // When request is failed
-    if(this.status == 500) {
-      alert(this.responseText);
-    }
   };
   return false;
 }
@@ -97,5 +93,16 @@ function confirmOrder(form) {
 
   ajax.open('POST',form.getAttribute("action"),true);
   ajax.send(dataform);
+
+  ajax.onreadystatechange = function() {
+    if(this.status == 200 && this.readyState == 4) {
+        let response = JSON.parse(this.responseText);
+        if(response[0].status) {
+            let order_list = document.getElementsByClassName('order__main-wrapper');
+
+            order_list[0].style.display = "none";
+        }
+    }
+  }
   return false;
 }

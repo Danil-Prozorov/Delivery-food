@@ -14,7 +14,7 @@ class CartRequestProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('app\Services\Interfaces\CartRequestInterface', function($app){
+        $this->app->bind('app\Services\Requests\CartRequest', function($app){
             return new CartRequests();
         });
     }

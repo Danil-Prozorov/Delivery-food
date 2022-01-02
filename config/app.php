@@ -176,8 +176,12 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        \App\Providers\ModularProvider::class,
-        \App\Services\Localization\LocalizationServiceProvider::class
+        App\Providers\ModularProvider::class,
+        App\Services\Localization\LocalizationServiceProvider::class,
+        App\Providers\CartRequestProvider::class,
+        App\Providers\OrderRequestsProvider::class,
+        App\Providers\RestaurantValidationProvider::class,
+        App\Providers\CartValidationProvider::class,
 
     ],
 

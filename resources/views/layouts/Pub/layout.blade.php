@@ -16,6 +16,7 @@
     <section class='container'>
       @yield('slider')
     </section>
+     @yield('panel')
      @yield('content')
   </main>
   <footer>

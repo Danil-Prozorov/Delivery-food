@@ -5,7 +5,6 @@ namespace App\Services\Requests;
 use App\Modules\Pub\Cart\Models\Cart;
 use App\Services\Traits\Response\ResponseJSON;
 use App\Services\Interfaces\CartRequestInterface;
-use App\Services\Validation\CartValidation;
 use Illuminate\Support\Facades\Auth;
 
 class CartRequests implements CartRequestInterface
@@ -16,7 +15,7 @@ class CartRequests implements CartRequestInterface
   {
     $item = Cart::find($id);
 
-    if (!CartValidation::sameId($item['user_id'],Auth::id())) {
+    if (!($item['user_id'] == Auth::id())) {
       return self::notFound();
     }
 
@@ -33,7 +32,7 @@ class CartRequests implements CartRequestInterface
   {
     $item = Cart::find($id);
 
-    if (!CartValidation::sameId($item['user_id'], Auth::id())) {
+    if (!($item['user_id'] == Auth::id())) {
       return self::notFound();
     }
 

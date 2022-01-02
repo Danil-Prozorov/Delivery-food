@@ -16,6 +16,8 @@ class CreateCartTable extends Migration
         Schema::create('carts', function (Blueprint $table) {
             $table->id();
             $table->integer('user_id')->required();
+            $table->integer('restaurant_id')->required();
+            $table->char('restaurant_name', 65)->required();
             $table->integer('product_id')->required();
             $table->string('product_name')->required();
             $table->string('image_path');

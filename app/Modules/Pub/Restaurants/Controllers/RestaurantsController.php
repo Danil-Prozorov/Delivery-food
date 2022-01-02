@@ -3,8 +3,11 @@
 namespace App\Modules\Pub\restaurants\Controllers;
 
 use App\Modules\Pub\restaurants\Models\Restaurant;
+use App\Services\Requests\CartRequests;
 use Illuminate\Http\Request;
+use App\Modules\Pub\Cart\Models\Cart;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class RestaurantsController extends Controller
 {

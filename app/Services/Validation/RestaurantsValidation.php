@@ -8,7 +8,7 @@ use App\Modules\Pub\Restaurants\Models\Restaurants_products as Product;
 
 class RestaurantsValidation
 {
-    public static function restaurantExist($restar_id) // Method jast chek exist eny restaurant with this id. Response TRUE||FALSE
+    public function restaurantExist($restar_id) // Method jast chek exist eny restaurant with this id. Response TRUE||FALSE
     {
         return self::restaurantAndProductExist($restar_id,'rest');
     }
@@ -18,7 +18,7 @@ class RestaurantsValidation
         return self::restaurantAndProductExist($prod_id,'prod');
     }
 
-    protected static function restaurantAndProductExist($id,$type)
+    protected function restaurantAndProductExist($id,$type)
     {
         if($type == 'prod'){
 

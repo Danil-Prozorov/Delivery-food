@@ -2,10 +2,10 @@
 
 namespace App\Providers;
 
+use App\Services\Validation\RestaurantsValidation;
 use Illuminate\Support\ServiceProvider;
-use App\Services\Requests\OrderRequests;
 
-class OrderRequestsProvider extends ServiceProvider
+class RestaurantValidationProvider extends ServiceProvider
 {
     /**
      * Register services.
@@ -14,8 +14,8 @@ class OrderRequestsProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind('app\Services\Interfaces\OrderRequestInterface', function($app) {
-            return new OrderRequests();
+        $this->app->bind('app\Services\Interfaces\RestaurantValidationInterface', function($app) {
+            return new RestaurantsValidation();
         });
     }
 
