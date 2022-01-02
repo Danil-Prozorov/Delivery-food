@@ -13,6 +13,7 @@ class CreateRestaurantsTable extends Migration
      */
     public function up()
     {
+        // These migrations exist only for testing!!! Real migrations locate inside App/Modules/{Main module}/SubModule/Migrations/...
         Schema::create('restaurants', function (Blueprint $table) {
             $table->id();
             $table->text('restaurant_name');
@@ -35,9 +36,9 @@ class CreateRestaurantsTable extends Migration
 
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id')->required()->references('id')->on('users');
+            $table->integer('user_id')->nullable();
             $table->integer('total_price');
-            $table->text('adres');
+            $table->text('address')->nullable();
             $table->text('status')->nullable();
             $table->timestamps();
         });

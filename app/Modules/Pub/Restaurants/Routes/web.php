@@ -11,6 +11,7 @@ Route::group(['prefix' => 'restaurants', 'middleware' => []], function () {
 });
 
 Route::group(['prefix' => 'cart','middleware' => ['auth']], function () {
-  Route::get('/order','OrderController@index')->name('order.index');
-  Route::post('/order','OrderController@create')->name('order.create');
+    Route::get('/order','OrderController@index')->name('order.index');
+    Route::post('/order','OrderController@create')->name('order.create');
+    Route::get('/orders', 'OrderController@show')->name('order.show');
 });

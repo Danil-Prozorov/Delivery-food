@@ -34,6 +34,7 @@ class OrderRequestTest extends TestCase
         $request = array(
             'total_price' => 600,
             'address'     => 'fkdsfsdfs',
+            'user_id'     => 1
         );
 
         $makeOrder = new OrderRequests();

@@ -2,6 +2,7 @@
 
 namespace App\Services\Requests;
 
+use App\Modules\Admin\User\Models\User;
 use App\Modules\Pub\Restaurants\Models\Orders;
 use App\Modules\Pub\Restaurants\Models\Orders_details;
 use App\Services\Interfaces\OrderRequestInterface;
@@ -49,10 +50,12 @@ class OrderRequests implements OrderRequestInterface
        $resultCount = count($results);
 
        $data = array(
-           'order_id'   => $orderId,
-           'item_name'  => $array[$resultCount]['product_name'],
-           'item_count' => $array[$resultCount]['product_count'],
-           'price'      => $array[$resultCount]['price'],
+           'order_id'        => $orderId,
+           'user_id'         => Auth::id(),
+           'restaurant_name' => $array[$resultCount]['restaurant_name'],
+           'item_name'       => $array[$resultCount]['product_name'],
+           'item_count'      => $array[$resultCount]['product_count'],
+           'price'           => $array[$resultCount]['price'],
        );
 
        Orders_details::create($data);
@@ -113,10 +116,6 @@ class OrderRequests implements OrderRequestInterface
 
   public function getAllOrders($userID)
   {
-      // Checking userID
-      if (!($userID == Auth::id())) {
-          return self::badRequest(['error' => 'Incorrect ID for this session']);
-      }
       // If ID the same then...
       $orders = Orders::all()->where('user_id', '=', $userID);
       return $orders;
@@ -124,10 +123,6 @@ class OrderRequests implements OrderRequestInterface
 
   public function getOrder($userID, $orderID)
   {
-      // Validate userID
-      if (!($userID == Auth::id())) {
-         return self::badRequest(['error' => 'Incorrect ID for this session']);
-      }
       // Find order
       $order = Orders::find($orderID)->first();
       // return order
@@ -142,7 +137,7 @@ class OrderRequests implements OrderRequestInterface
 
       // check authentication
       if (!Auth::user()) {
-        self::noContent();
+        return self::noContent();
       }
 
       //return it
@@ -156,5 +151,17 @@ class OrderRequests implements OrderRequestInterface
 
       // return result
       return $orderData;
+  }
+
+  public static function countTotalPrice(User $user)
+  {
+      // Create variable
+      $fullCost = 0;
+      // Count price
+      foreach ($user->cart as $item) {
+          $fullCost += $item->price*$item->product_count;
+      }
+      // return result
+      return $fullCost;
   }
 }

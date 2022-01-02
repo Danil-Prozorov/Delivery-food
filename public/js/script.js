@@ -16,13 +16,31 @@
 }
 
 {
-  function writeAdresIntoForm(adres){
-    let adresLine = adres.value;
-    let emptyLine = document.getElementById('adres');
+  function writeAddressIntoForm(address){
+    let addressLine = address.value;
+    let emptyLine = document.getElementById('address');
 
     if(emptyLine != false){
-      emptyLine.value = adresLine;
+      emptyLine.value = addressLine;
     }
 
   }
+}
+
+{
+    function showDetails(id, mod){
+        if(mod == 'on'){
+            let details = document.getElementById(`order_details_${id}`);
+            let order   = document.getElementById(`order_${id}`);
+            details.style.display = 'block';
+            order.removeAttribute('onclick');
+            order.setAttribute('onclick', `return showDetails(${id},'off')`)
+        }else if(mod == 'off'){
+            let details = document.getElementById(`order_details_${id}`);
+            let order   = document.getElementById(`order_${id}`);
+            details.style.display = 'none';
+            order.removeAttribute('onclick');
+            order.setAttribute('onclick', `return showDetails(${id},'on')`);
+        }
+    }
 }

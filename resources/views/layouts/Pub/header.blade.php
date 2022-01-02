@@ -5,7 +5,7 @@
               <a href='/restaurants'><img src="/images/logo.svg" alt="logo"></a>
             </div>
             <div class="navigation__adres-row-wrap">
-               <input type="text" id="search" name="search" onchange="return writeAdresIntoForm(this)" placeholder="Адрес доставки">
+               <input type="text" id="search" name="search" onchange="return writeAddressIntoForm(this)" placeholder="Адрес доставки">
                @error('search')
                 <span class="invalid-feedback" role="alert">
                   <strong>{{ $message }}</strong>
